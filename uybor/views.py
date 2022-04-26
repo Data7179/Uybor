@@ -8,7 +8,7 @@ from rest_framework.permissions import IsAuthenticated
 
 
 class Uy_Get(APIView):
-    # permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
 
     def get(self, request):
         all_news = Uylar.objects.all()
@@ -21,10 +21,7 @@ class Uy_Get(APIView):
 
 class Uy_Post(APIView):
     def post(self, request):
-                
-        # user_obj = User.objects.get(id=int(request.data['author']))
-        # print(user_obj.first_name, user_obj.last_name, user_obj.email, user_obj.password)
-
+            
         serialized_news = UylarSerializer(data=request.data)
         
         if request.user.is_authenticated:
